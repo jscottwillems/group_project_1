@@ -18,31 +18,27 @@
 <body>
 
   <div class="top-bar">
-    <div class="top-bar-left">
-      <ul class="menu">
-        <li>
-          <h2>CitySearch</h2>
-        </li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <li>
-          <a href="#">About</a>
-        </li>
-        
-      </ul>
+    <h2 id="logo">CitySearch</h2>
+    <p id="tagLine">Know before you go</p>
+    <div class="top-bar-right" id="aboutBtnContainer">
+          <a href="#" id="aboutBtn">About</a>
     </div>
   </div>
 
-  <div class="container" id="searchArea">
+  <div class="container" id="mainArea">
     <div class="input-group input-group-rounded" id="searchBar">
       <input class="input-group-field" type="search">
       <div class="input-group-button">
-        <input type="submit" class="button secondary" value="Search">
+        <input type="submit" class="button secondary" id="searchBtn" value="Search">
       </div>
     </div>
   </div>
+
+  <div class="columns shrink footer text-center" id="footer">
+    <p id="copyright">CitySearch &copy; 2018</p>
+  </div>
+
+
 
 
   <script type="text/javascript" src="assets/javascript/vendor/jquery.js"></script>
