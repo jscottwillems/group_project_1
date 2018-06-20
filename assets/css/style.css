@@ -6,7 +6,7 @@ body {
 
 .top-bar {
   padding: 30px 130px 30px 130px;
-  background: rgba(0, 0, 61, 0.842);
+  background: rgba(0, 0, 61, 0.750);
   color: white;
   max-height: 190px;
 }
@@ -14,7 +14,7 @@ body {
 #logo {
   font-family: 'Logofont';
   float: left;
-  font-size: 58px;
+  font-size: 62px;
   text-shadow: 4px 4px rgb(0, 0, 0);
 }
 
@@ -57,7 +57,7 @@ body {
   padding-top: 245px; 
   height: auto;
   min-height: 550px;
-  background: rgba(240, 248, 255, 0.644);
+  background: rgba(240, 248, 255, 0.452);
   border-radius: 10px;
 }
 
@@ -77,12 +77,12 @@ body {
 #footer {
   height: 100px;
   padding-top: 30px;
-  background: rgba(0, 0, 61, 0.842);
+  background: rgba(0, 0, 61, 0.750);
   color: aliceblue;
 }
 
 #copyright {
-  font-size: 18px;
+  font-size: 22px;
 }
 
 @font-face {
