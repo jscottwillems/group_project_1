@@ -32,7 +32,7 @@ $('#searchBtn').on('click', function(event) {
 
             console.log(response);
 
-            for(i = 0; i < 1; i++) {
+            for(i = 0; i < 10; i++) {
 
             var photoRef =    "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + response.result.photos[i].photo_reference + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
             console.log(photoRef)
@@ -54,8 +54,32 @@ $('#searchBtn').on('click', function(event) {
 
     }); // closes first ajax call
 
+    //eventful api call
+
+    var eventfulKey = "Q8T5BVGwG4DvC98F"
+    var eventfulURL = "https://api.eventful.com/json/performers/search?&events?&keywords=entertainment&location=" + place + "&app_key=Q8T5BVGwG4DvC98F"
+
+    //The application gets a request token.
+    $.ajax({
+        url: eventfulURL,
+        method: "GET",
+        dataType: 'jsonp'
+    }).then(function(response) {
+        console.log(response);
+        console.log(place)
+        for(i = 0; i < 10; i++) {
+            console.log(response.performers.performer[i].name)
+            console.log(response.performers.performer[i].image)
+            console.log(response.performers.performer[i].short_bio)
+            console.log(response.performers.performer[i].url)
+        }
+
+    });
+
+  
 
 
+    
 }); // closes search button function
 
 
