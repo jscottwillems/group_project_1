@@ -1,52 +1,76 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>City Search</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/teleport-autocomplete.min.css">
-	<script src="https://use.fontawesome.com/20d3a6ef4d.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>City Search</title>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="assets/css/foundation.css">
+
+  <link rel="stylesheet" href="/Users/basavaraja/Desktop/group_project_1/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
+
 <body>
 <!--Begining of Wrapper-->
-	<div class="wrapper">
-		<div class="headerContainer">
-			<h1>Search City</h1>
-			<div class="navContainer">
-				<div class="LHS">
-					<section class="intro">
-						<p>Input City:</p>
-					</section>
-					<form><!--Form to enter city name-->
-							<input type="text" class='city-input tp-ac__input' placeholder="City, Province, Country">
-							
-					</form>
-				</div>
-				<div class="RHS"><!--This is directed to twitter log-in page, fb link can be added-->
-					<a href="http://twitter.com/home?status=Going%20to%20move%2C%20travel%2C%20or%20work%20abroad?%20Use%20City%20Search%20https://goo.gl/15kcq5%20made%20by%20@Natalie_N_B%20using%20@TeleportInc%20API%2C%20@GoogleMapsAPI" target="_blank">
-						<i class="fa fa-twitter" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</div>
-		<section class="summaryWithMap">
-			<div class="summary"></div><!--This Div is to capture info about city and location on the map-->
+<div class="wrapper">
+  <div class="top-bar">
+    <h2 id="logo">CitySearch</h2>
+    <p id="tagLine">Know before you go</p>
+    <div class="top-bar-right" id="aboutBtnContainer">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" class="fa fa-facebook" target="_blank"></a>
+          <a href="#" id="aboutBtn">About</a>
+    </div>
+  </div>
+
+  <div class="container" id="mainArea">
+    <div class="input-group input-group-rounded" id="searchBar">
+      <input class="input-group-field" type="search" id="auto">
+      <div class="input-group-button">
+        <input type="submit" class="button secondary" id="searchBtn" value="Search">
+      </div>
+    </div>
+  </div>
+  <section class="summaryWithMap">
+			<div class="summary" id="map"></div><!--This Div is to capture info about city and location on the map-->
 		</section>
 		
-		<div class="buttonsContainer"></div><!--Buttons for Photos, climate, What is happening-->
+		<div class="buttonsContainer"></div><!-- What is happening-->
         <div class="buttonInfoContainer"></div><!--This div displays info about buttons-->
-		<footer>
-				<p>CitySearch ©2018</p>
-		</footer>
-
-	</div>  
+    
+</div>
 <!-- end of wrapper -->
 
+<footer>
+  <div class="columns shrink footer text-center" id="footer">
+    <p id="copyright">CitySearch &copy; 2018</p>
+  </div>
+</footer>
+
 <!--Script goes here -->
+<script>
+function activatePlaceSearch(){
+  let input = document.getElementById('auto');
+  let complete = new google.maps.places.Autocomplete(input);
+}
 
+</script>
 
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC64jI0pkmQWVNlIblCUbOoP5cY1DfexR4&libraries=places&callback=activatePlaceSearch"></script>
+
+ 
+  <script type="text/javascript" src="assets/javascript/vendor/jquery.js"></script>
+  <script type="text/javascript" src="assets/javascript/vendor/what-input.js"></script>
+  <script type="text/javascript" src="assets/javascript/vendor/foundation.js"></script>
+  <script type="text/javascript" src="assets/javascript/app2.js"></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </body>
+
 </html>
-  
