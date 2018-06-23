@@ -2,6 +2,8 @@ body {
   background: url('../images/background.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'bluefish';
+  height: 100vh;
+  padding-bottom: 150px;
 }
 
 .top-bar {
@@ -16,6 +18,10 @@ body {
   float: left;
   font-size: 62px;
   text-shadow: 4px 4px rgb(0, 0, 0);
+}
+
+#logo:hover, .backToSearch:hover {
+  cursor: pointer;
 }
 
 #tagLine {
@@ -54,15 +60,48 @@ body {
 
 #mainArea {
   margin: 80px 80px 80px 80px;
-  padding-top: 245px; 
+  padding-top: 245px;
+  padding-bottom: 30px;
   height: auto;
   min-height: 550px;
   background: rgba(240, 248, 255, 0.452);
   border-radius: 10px;
 }
 
+.resultsDiv {
+  width: 800px;
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: -200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(240, 248, 255, 0.788);
+  border-radius: 10px;
+}
+
 .cityImg {
- margin-left: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 2px 2px 2px 2px rgba(29, 29, 29, 0.315);
+}
+
+.cityInfo {
+  text-align: center;
+  font-family: 'bluefish';
+}
+
+.backToSearch {
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  color: aliceblue;
+  background: rgb(0, 0, 61);
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 #searchBar {
@@ -79,8 +118,11 @@ body {
 
 
 #footer {
-  height: 100px;
-  padding-top: 30px;
+  position: absolute;
+  height: 150px;
+  margin-bottom: 0;
+  width: 100vw;
+  padding: 1rem;
   background: rgba(0, 0, 61, 0.750);
   color: aliceblue;
 }
