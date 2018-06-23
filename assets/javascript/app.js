@@ -32,7 +32,7 @@ $('#searchBtn').on('click', function(event) {
 
             console.log(response);
 
-            for(i = 0; i < 10; i++) {
+            for(i = 0; i < 1; i++) {
 
             var photoRef =    "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + response.result.photos[i].photo_reference + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
             console.log(photoRef)
@@ -68,10 +68,23 @@ $('#searchBtn').on('click', function(event) {
         console.log(response);
         console.log(place)
         for(i = 0; i < 10; i++) {
-            console.log(response.performers.performer[i].name)
-            console.log(response.performers.performer[i].image)
-            console.log(response.performers.performer[i].short_bio)
-            console.log(response.performers.performer[i].url)
+            console.log(response.performers.performer[i].name);
+            var eventName = response.performers.performer[i].name;
+
+            console.log(response.performers.performer[i].image);
+            var eventImage = response.performers.performer[i].image;
+
+            console.log(response.performers.performer[i].short_bio);
+            var eventBio = response.performers.performer[i].short_bio;
+
+            console.log(response.performers.performer[i].url);
+            var eventURL = response.performers.performer[i].url;
+
+            var eventDiv = $('<img src="'+ eventImage +'">')//chain other parts of the div?;
+            eventDiv.addClass('event')
+            
+
+            
         }
 
     });
