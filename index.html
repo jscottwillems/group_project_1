@@ -11,7 +11,7 @@
 
   <link rel="stylesheet" href="assets/css/foundation.css">
 
-  <link rel="stylesheet" href="/Users/basavaraja/Desktop/group_project_1/style.css">
+  <link rel="stylesheet" href="/Users/basavaraja/Desktop/x/assets/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -31,18 +31,20 @@
 
   <div class="container" id="mainArea">
     <div class="input-group input-group-rounded" id="searchBar">
-      <input class="input-group-field" type="search" id="auto">
+      <input id="auto" class="input-group-field" type="search">
       <div class="input-group-button">
         <input type="submit" class="button secondary" id="searchBtn" value="Search">
       </div>
     </div>
   </div>
   <section class="summaryWithMap">
-			<div class="summary" id="map"></div><!--This Div is to capture info about city and location on the map-->
+			<div class="summary"></div><!--This Div is to capture info about city and location on the map-->
 		</section>
 		
 		<div class="buttonsContainer"></div><!-- What is happening-->
         <div class="buttonInfoContainer"></div><!--This div displays info about buttons-->
+    <!-- display google map -->
+    <div id="map"></div>
     
 </div>
 <!-- end of wrapper -->
@@ -52,24 +54,14 @@
     <p id="copyright">CitySearch &copy; 2018</p>
   </div>
 </footer>
-
-<!--Script goes here -->
-<script>
-function activatePlaceSearch(){
-  let input = document.getElementById('auto');
-  let complete = new google.maps.places.Autocomplete(input);
-}
-
-</script>
-
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC64jI0pkmQWVNlIblCUbOoP5cY1DfexR4&libraries=places&callback=activatePlaceSearch"></script>
-
- 
+<!--scripts go here-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC64jI0pkmQWVNlIblCUbOoP5cY1DfexR4&libraries=places&callback=initAutocomplete" async defer></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
   <script type="text/javascript" src="assets/javascript/vendor/jquery.js"></script>
   <script type="text/javascript" src="assets/javascript/vendor/what-input.js"></script>
   <script type="text/javascript" src="assets/javascript/vendor/foundation.js"></script>
   <script type="text/javascript" src="assets/javascript/app2.js"></script>
-  <script type="text/javascript" src="assets/javascript/app.js"></script>
+  
 
 </body>
 
