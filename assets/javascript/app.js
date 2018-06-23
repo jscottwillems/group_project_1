@@ -96,8 +96,45 @@ $('#searchBtn').on('click' ,function(event) {
 
     }); // closes first ajax call
 
+    //eventful api call
+
+    var eventfulKey = "Q8T5BVGwG4DvC98F"
+    var eventfulURL = "https://api.eventful.com/json/performers/search?&events?&keywords=entertainment&location=" + place + "&app_key=Q8T5BVGwG4DvC98F"
+
+    //The application gets a request token.
+    $.ajax({
+        url: eventfulURL,
+        method: "GET",
+        dataType: 'jsonp'
+    }).then(function(response) {
+        console.log(response);
+        console.log(place)
+        for(i = 0; i < 10; i++) {
+            console.log(response.performers.performer[i].name);
+            var eventName = response.performers.performer[i].name;
+
+            console.log(response.performers.performer[i].image);
+            var eventImage = response.performers.performer[i].image;
+
+            console.log(response.performers.performer[i].short_bio);
+            var eventBio = response.performers.performer[i].short_bio;
+
+            console.log(response.performers.performer[i].url);
+            var eventURL = response.performers.performer[i].url;
+
+            var eventDiv = $('<img src="'+ eventImage +'">')//chain other parts of the div?;
+            eventDiv.addClass('event')
+            
+
+            
+        }
+
+    });
+
+  
 
 
+    
 }); // closes search button function
 
 
