@@ -76,6 +76,9 @@ $('#searchBtn').on('click' ,function(event) {
                 var resultsDiv = $('<div>');
                 resultsDiv.addClass('resultsDiv');
                 
+                var eventsDiv = $('<div>');
+                $(eventsDiv).addClass('eventsDiv');
+                
                 var backToSearch = $('<button type="button">Back To Search</button>');
                 $(backToSearch).addClass('backToSearch');
                 
@@ -83,6 +86,8 @@ $('#searchBtn').on('click' ,function(event) {
                 
                 $(resultsDiv).append(infoHolder);
                 
+                $(resultsDiv).append(eventsDiv);
+
                 $(resultsDiv).append(backToSearch);
 
                 $('#mainArea').append(resultsDiv);
@@ -97,9 +102,7 @@ $('#searchBtn').on('click' ,function(event) {
     }); // closes first ajax call
 
     //eventful api call
-
-    var eventfulKey = "Q8T5BVGwG4DvC98F"
-    var eventfulURL = "https://api.eventful.com/json/performers/search?&events?&keywords=entertainment&location=" + place + "&app_key=Q8T5BVGwG4DvC98F"
+    var eventfulURL = "https://api.eventful.com/json/events/search?&events?&keywords=popular&location=" + place + "&app_key=Q8T5BVGwG4DvC98F"
 
     //The application gets a request token.
     $.ajax({
@@ -110,23 +113,27 @@ $('#searchBtn').on('click' ,function(event) {
         console.log(response);
         console.log(place)
         for(i = 0; i < 10; i++) {
-            console.log(response.performers.performer[i].name);
-            var eventName = response.performers.performer[i].name;
 
-            console.log(response.performers.performer[i].image);
-            var eventImage = response.performers.performer[i].image;
+            var eventItem = $('<div>');
+            $(eventItem).addClass('eventItem');
+            $('.eventsDiv').append(eventItem)
 
-            console.log(response.performers.performer[i].short_bio);
-            var eventBio = response.performers.performer[i].short_bio;
+            var eventName = response.events.event[i].title;
+            //console.log(eventName);
+            var eventItemName = $('<h2>'+ eventName +'</h2>');
+            $(eventItemName).addClass('eventItemName');
+            $(eventItem).append(eventItemName);
 
-            console.log(response.performers.performer[i].url);
-            var eventURL = response.performers.performer[i].url;
+            var eventImage = response.events.event[i].image;
+             console.log(eventImage);
 
-            var eventDiv = $('<img src="'+ eventImage +'">')//chain other parts of the div?;
-            eventDiv.addClass('event')
+            var eventBio = response.events.event[i].short_bio;
+            // console.log(eventBio);
+            
+            var eventURL = response.events.event[i].url;
+            // console.log(eventURL);
             
 
-            
         }
 
     });
