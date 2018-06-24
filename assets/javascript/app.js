@@ -74,8 +74,8 @@ $(document).ready(function () {
 
                     var cityName = response.result.name;
 
-                    var infoHolder = $('<h2>' + cityName + '</h2>');
-                    infoHolder.addClass('cityInfo');
+                    var cityNameDiv = $('<h1>' + cityName + '</h1>');
+                    cityNameDiv.addClass('cityNameDiv');
 
                     var imgDiv = $('<img src="' + photoRef + '">');
                     imgDiv.addClass('cityImg')
@@ -92,7 +92,7 @@ $(document).ready(function () {
 
                     $(resultsDiv).append(imgDiv);
 
-                    $(resultsDiv).append(infoHolder);
+                    $(resultsDiv).append(cityNameDiv);
 
                     $(resultsDiv).append(eventsDiv);
 
@@ -118,7 +118,7 @@ $(document).ready(function () {
             method: "GET",
         }).then(function (response) {
             console.log(JSON.parse(response));
-            console.log(place)
+            console.log(response)
             let responseP = JSON.parse(response);
 
             for (i = 0; i < 10; i++) {
@@ -140,22 +140,32 @@ $(document).ready(function () {
                 $(eventItem).append(eventItemImage);
 
                 var eventBio = responseP.events.event[i].description;
-                console.log(eventBio);
+                //console.log(eventBio);
                 var eventItemBio = $('<p>'+ eventBio +'</p>');
                 $(eventItemBio).addClass('eventItemBio');
-                if (eventBio != 'null') {
+                if (eventBio != null) {
                 $(eventItem).append(eventItemBio);
                 } else {
                 $(eventItem).append('<p class="eventItemBio">No discription available.</p>')
                 };
 
                 var eventURL = responseP.events.event[i].url;
-                // console.log(eventURL);
+                //console.log(eventURL);
+                var eventItemUrl = $('<a href="'+ eventURL +'" target="_blank">Click here for more info!</a>');
+                $(eventItemUrl).addClass('eventItemUrl');
+                $(eventItem).append(eventItemUrl);
+
+                var eventDate = responseP.events.event[i].start_time;
+                console.log(eventDate);
+                var eventDateConverted = moment(eventDate).format('MMMM Do YYYY');
+                var eventItemDate = $('<p>'+ eventDateConverted+'</p>');
+                $(eventItemDate).addClass('eventItemDate');
+                $(eventItem).append(eventItemDate);
 
 
-            }
+            } // closes eventful for loop
 
-        });
+        }); // closes eventful API ajax call
 
 
 

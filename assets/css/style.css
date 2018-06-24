@@ -87,9 +87,10 @@ body {
   box-shadow: 2px 2px 2px 2px rgba(29, 29, 29, 0.315);
 }
 
-.cityInfo {
+.cityNameDiv {
   text-align: center;
   font-family: 'bluefish';
+  margin-bottom: 40px;
 }
 
 .eventsDiv {
@@ -104,14 +105,14 @@ body {
 }
 
 .eventItem {
-  padding: 10px;
+  padding: 20px;
   margin-bottom: 15px;
   height: auto;
-  background: rgba(165, 220, 247, 0.486);
+  background: rgba(165, 220, 247, 0.281);
 }
 
 .eventItemName {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: bold;
   text-align: left;
 }
@@ -120,9 +121,24 @@ body {
  
 }
 
-eventItemBio {
-  font-size: 8px;
-  font-weight: lighter;
+.eventItemBio {
+  font-size: 16px;
+  text-align: left;
+}
+
+.eventItemUrl {
+  color: blue;
+}
+
+.eventItemDate {
+  text-align: right;
+  margin-right: 40px;
+  margin-top: -25px;
+  font-weight: bold;
+}
+
+.eventItemUrl:hover {
+  color: rgb(24, 24, 122);
 }
 
 .backToSearch {
