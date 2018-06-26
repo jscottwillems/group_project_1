@@ -16,7 +16,7 @@ $(document).ready(function () {
     // aleviates CORS issue
     jQuery.ajaxPrefilter(function (options) {
         if (options.crossDomain && jQuery.support.cors) {
-            options.url = 'http://cors-anywhere.herokuapp.com/' + options.url;
+            options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
         }
     }); // closes ajaxPreFilter
 
