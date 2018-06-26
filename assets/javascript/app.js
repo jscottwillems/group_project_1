@@ -71,9 +71,9 @@ $(document).ready(function () {
             // console.log(data);
 
             var temp = data.query.results.channel.item.condition.temp + "°F";
-            // console.log(temp)
+            console.log(temp)
             var weatherDescription = data.query.results.channel.item.condition.text;
-            // console.log(weatherDescription);
+            console.log(weatherDescription);
             var weather = $("<p>");
             $(weather).addClass("weather");
             $(weather).text("Current Weather in " + place + ": " + temp + " and " + weatherDescription);
@@ -124,7 +124,10 @@ $(document).ready(function () {
 
                         var imgDiv = $('<img src="' + photoRef + '">');
                         imgDiv.addClass('cityImg');
-
+                        
+                        var weatherDiv = $('<div>');
+                        $(weatherDiv).addClass('weatherDiv');
+                        
                         var eventsHeader = $('<p>Events</p>');
                         $(eventsHeader).addClass('eventsHeader');
 
@@ -135,9 +138,6 @@ $(document).ready(function () {
                         $(noEvents).addClass('noEvents');
                         $(eventsDiv).append(noEvents);
                         $(noEvents).hide();
-
-                        var weatherDiv = $('<div>');
-                        $(weatherDiv).addClass('weatherDiv');
 
                         $(resultsDiv).append(imgDiv);
 
