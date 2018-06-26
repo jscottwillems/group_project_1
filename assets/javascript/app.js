@@ -1,5 +1,6 @@
 $(document).ready(function () {
     
+    $("#orbit").hide()
 
     jQuery.ajaxPrefilter(function (options) {
         if (options.crossDomain && jQuery.support.cors) {
@@ -9,11 +10,13 @@ $(document).ready(function () {
 
     // reloads page when you click the logo
     $('#logo').on('click', function (event) {
+        $("#orbit").hide()
         event.preventDefault();
         location.reload();
     });
 
     $(document).on('click', '.backToSearch', function () {
+        $("#orbit").hide()
         event.preventDefault();
         location.reload();
     });
@@ -38,6 +41,7 @@ $(document).ready(function () {
     // function for search
     $('#searchBtn').on('click', function (event) {
         event.preventDefault();
+        $("#orbit").show()
 
         var place = $('#searchRes').val();
         console.log(place);
@@ -71,11 +75,10 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET",
         }).then(function (response) {
-<<<<<<< HEAD
-            console.log(response);
+            //console.log(response);
 
             var placeId = response.candidates[0].place_id
-            console.log(placeId);
+            //console.log(placeId);
            
             var newURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo";
 
@@ -85,7 +88,7 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
 
-                console.log(response);
+                //console.log(response);
                 var photos = [];
                 for (i = 0; i < 4; i++) {
 
@@ -93,7 +96,7 @@ $(document).ready(function () {
                     //console.log(photoRef)
                     photos.push(photoRef);
                 
-                    console.log(photos);
+                    
                     var cityName = response.result.name;
 
                     var cityNameDiv = $('<h1>' + cityName + '</h1>');
@@ -103,6 +106,7 @@ $(document).ready(function () {
                     imgDiv.addClass('cityImg');
                     $("#image-" + i).attr("src", photos[i]);
                 }
+                    //console.log(photos);
                     var resultsDiv = $('<div>');
                     resultsDiv.addClass('resultsDiv');
 
@@ -129,82 +133,6 @@ $(document).ready(function () {
             }); // closes second ajax call
 
 
-=======
-            // console.log(response);
-            
-            var resultsDiv = $('<div>');
-            resultsDiv.addClass('resultsDiv');
-
-            var backToSearch = $('<button type="button">Back To Search</button>');
-            $(backToSearch).addClass('backToSearch');
-            
-            if (response.candidates[0] != undefined) {
-                var placeId = response.candidates[0].place_id
-                console.log(placeId);
-
-                var newURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo";
-
-                // gets photo reference and city info using new URL with placeID
-                $.ajax({
-                    url: newURL,
-                    method: "GET"
-                }).then(function (response) {
-
-                    //console.log(response);
-
-                    for (i = 0; i < 1; i++) {
-
-                        var photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + response.result.photos[i].photo_reference + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
-                        //console.log(photoRef)
-
-                        var cityName = response.result.name;
-
-                        var cityNameDiv = $('<h1>' + cityName + '</h1>');
-                        cityNameDiv.addClass('cityNameDiv');
-
-                        var imgDiv = $('<img src="' + photoRef + '">');
-                        imgDiv.addClass('cityImg');
-
-                        
-                        
-                        
-                        var eventsDiv = $('<div>');
-                        $(eventsDiv).addClass('eventsDiv');
-                        
-                        var noEvents = $('<p>No events found.</p>');
-                        $(noEvents).addClass('noEvents');
-                        $(eventsDiv).append(noEvents);
-                        $(noEvents).hide();
-                        
-                        
-
-                        var weatherDiv = $('<div>');
-                        $(weatherDiv).addClass('weatherDiv');
-                        
-                        $(resultsDiv).append(imgDiv);
-
-                        $(resultsDiv).append(cityNameDiv);
-
-                        $(resultsDiv).append(weatherDiv);
-
-                        $(resultsDiv).append(eventsDiv);
-
-                        
-                        $(resultsDiv).append(backToSearch);
-                        
-                        $('#mainArea').append(resultsDiv);
-                        
-                    }
-                }); // closes second ajax call
-            } else {
-                var noResults = $('<p>No results found. Try another search.</p>');
-                $(noResults).addClass('noResults');
-                $(resultsDiv).append(noResults);
-                $(resultsDiv).append(backToSearch);
-                $('#mainArea').append(resultsDiv);
-            }
-            
->>>>>>> dca4ed231b3d5415711212f9a503520016a59de3
         }); // closes first ajax call
         
         //eventful api call
@@ -219,10 +147,11 @@ $(document).ready(function () {
             //console.log(response)
             let responseP = JSON.parse(response);
 
-            
-            for (i = 0; i < 10; i++) {
+            var eventImg = [];
+           
                 
                 if (responseP.events != undefined) {
+                    for (i = 0; i < 10; i++) {
                     
                     var eventItem = $('<div>');
                     $(eventItem).addClass('eventItem');
@@ -239,13 +168,16 @@ $(document).ready(function () {
                     if (responseP.events.event[i].image != null) {   
                         
                         var eventImage = responseP.events.event[i].image.medium.url;
-                         console.log(eventImage);
+                         //console.log(eventImage);
+                         eventImg.push(eventImage)
+                         //console.log(responseP.events.event[i])
+                         console.log(eventImg)
 
                     } else {
-                        
+                        console.log("undefined")
                     };
 
-                    
+                }
                     var eventBio = responseP.events.event[i].description;
                     //console.log(eventBio);
                     var eventItemBio = $('<p>' + eventBio + '</p>');
@@ -273,22 +205,22 @@ $(document).ready(function () {
                     $('.noEvents').show();
                 }; // closes eventful if else statement to prevent results from not displaying if no events are found for city
 
-        }
+        
         var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + place + "') and u='f'"
         //change city variable dynamically as required
         $.ajax({
           url: "https://query.yahooapis.com/v1/public/yql?q=" + searchtext + "&format=json",
           method: "GET"
           }).then(function(data){
-         console.log(data);
+         //console.log(data);
          var date = data.query.results.channel.item.condition.date;
-         console.log(date);
+         //console.log(date);
 ;
          var temp = data.query.results.channel.item.condition.temp + "°F";
-         console.log(temp)
+         //console.log(temp)
 
          var weatherDescription = data.query.results.channel.item.condition.text;
-         console.log(weatherDescription);
+         //console.log(weatherDescription);
 
          var weather = $("<p>");
          $(weather).addClass("weather");
@@ -298,7 +230,7 @@ $(document).ready(function () {
 
         ); // closes eventful API ajax call
 
-<<<<<<< HEAD
+
 
 
         });
@@ -307,8 +239,4 @@ $(document).ready(function () {
 
     },)
     }); // closes search button function
-=======
-    }); // closes search button function
 
-}); //closes document.ready
->>>>>>> dca4ed231b3d5415711212f9a503520016a59de3
