@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    
 
     jQuery.ajaxPrefilter(function(options) {
         if (options.crossDomain && jQuery.support.cors) {
@@ -66,21 +67,23 @@ $(document).ready(function () {
             }).then(function (response) {
 
                 console.log(response);
-
-                for (i = 0; i < 1; i++) {
+                var photos = [];
+                for (i = 0; i < 4; i++) {
 
                     var photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + response.result.photos[i].photo_reference + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
-                    console.log(photoRef)
-
+                    //console.log(photoRef)
+                    photos.push(photoRef);
+                
+                    console.log(photos);
                     var cityName = response.result.name;
 
                     var cityNameDiv = $('<h1>' + cityName + '</h1>');
                     cityNameDiv.addClass('cityNameDiv');
 
-                    var imgDiv = $('<img src="' + photoRef + '">');
-                    imgDiv.addClass('cityImg')
-                    $()
-
+                    var imgDiv = $("#orbit");
+                    imgDiv.addClass('cityImg');
+                    $("#image-" + i).attr("src", photos[i]);
+                }
                     var resultsDiv = $('<div>');
                     resultsDiv.addClass('resultsDiv');
 
@@ -100,7 +103,7 @@ $(document).ready(function () {
 
                     $('#mainArea').append(resultsDiv);
 
-                }
+                
 
 
 
@@ -183,7 +186,7 @@ $(document).ready(function () {
          var weather = $("<p>");
          $(weather).addClass("weather");
          var description = $(weather).text(date + " " + "It is currently " + temp + " and " + weatherDescription);
-         $(".cityInfo").append(description);
+         $(".citynamediv").append(description);
             } // closes eventful for loop
 
         ); // closes eventful API ajax call

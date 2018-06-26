@@ -93,7 +93,15 @@ body {
   margin-bottom: 40px;
 }
 
-.weather {
+.orbit {
+  display: block;
+  width: 400px;
+  height: auto;
+}
+.orbit-image {
+  display: block;
+  width: 400px;
+  height: 350px;
 }
 
 .eventsDiv {
