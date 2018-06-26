@@ -4,6 +4,16 @@ body {
   font-family: 'bluefish';
   height: 100vh;
   padding-bottom: 150px;
+  overflow-x: hidden;
+}
+
+body.is-reveal-open {
+  overflow: visible;
+}
+
+.reveal-overlay {
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .top-bar {
@@ -11,6 +21,7 @@ body {
   background: rgba(0, 0, 61, 0.750);
   color: white;
   max-height: 190px;
+  width: 100vw;
 }
 
 #logo {
@@ -66,7 +77,7 @@ body {
   padding-right: 30px;
   height: auto;
   min-height: 550px;
-  background: rgba(240, 248, 255, 0.452);
+  /*background: rgba(240, 248, 255, 0.452);*/
   border-radius: 10px;
 }
 
@@ -80,6 +91,11 @@ body {
   border-radius: 10px;
 }
 
+.noResults {
+  text-align: center;
+  font-size: 24px;
+}
+
 .cityImg {
   display: block;
   margin-left: auto;
@@ -90,6 +106,12 @@ body {
 .cityNameDiv {
   text-align: center;
   font-family: 'bluefish';
+  margin-bottom: 10px;
+}
+
+.weatherDiv {
+  text-align: center;
+  font-size: 18px;
   margin-bottom: 40px;
 }
 
@@ -162,6 +184,12 @@ body {
   padding: 5px 5px 5px 5px;
   border-radius: 10px;
   font-size: 16px;
+}
+
+.noEvents {
+  text-align: center;
+  margin-top: 150px;
+  font-size: 18px;
 }
 
 #searchBar {
