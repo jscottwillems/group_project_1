@@ -1,3 +1,5 @@
+
+var teleApp = {};
 $(document).ready(function () {
 
     $('.loader').hide();
@@ -7,6 +9,49 @@ $(document).ready(function () {
         $(".loader").fadeIn();
 
     });
+    //retrieve user selected API city name details via API geoname ID
+    teleApp.getCityNameViaID = function(id) {
+        
+        $.ajax({
+            url: `https://api.teleport.org/api/cities/geonameid:${id}/`,
+            method: 'GET',
+            dataType: 'json'
+        }).then(function(cityNameData) {
+            teleApp.fullName = cityNameData.full_name;
+            teleApp.cityName = cityNameData.name;
+   
+            // activate summary section
+            $('#mainArea').append('<div id="map">');
+            
+            // append map to DOM
+            teleApp.displaySummarySection(teleApp.fullName, teleApp.cityName);
+            
+            setTimeout(function() {
+                teleApp.initMap(teleApp.latitude, teleApp.longitude);
+            }, 500);	
+
+            // compiles summary section and sends to DOM
+         teleApp.displaySummarySection = function(fullName, cityName) {
+    // change header to city name
+   var header = $('#mainArea').append('<h1>');
+	$(header).text(cityName);
+ 
+    // create summary header
+    var summary= $('#mainArea').append('<h2>');
+	var summaryContainerHeader = $(summary).text(fullName);
+
+	// append header to summary section in DOM 
+	$('#mainArea').append(summaryContainerHeader);
+}
+   //-------------------------------------------------------
+
+
+
+
+
+
+   
+   
     $(document).ajaxComplete(function () {
 
         $(".loader").fadeOut('slow');
