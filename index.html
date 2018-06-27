@@ -13,6 +13,11 @@
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo&libraries=places"></script>
 
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+  integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
+  crossorigin="anonymous">
+
   <link rel="stylesheet" href="assets/css/foundation.css">
 
   <link rel="stylesheet" href="assets/css/style.css">
@@ -28,9 +33,9 @@
   <div class="loader"></div>
 
   <div class="top-bar">
-    <h2 id="logo">CitySearch</h2>
-    <p id="tagLine">Know before you go...</p>
-    <div class="top-bar-right" id="aboutBtnContainer">
+    <h2 class="animated bounceInDown" id="logo">CitySearch</h2>
+    <p class="animated rotateInUpRight" id="tagLine">Know before you go...</p>
+    <div class="top-bar-right animated bounceInDown" id="aboutBtnContainer">
       <a href="#" id="aboutBtn" data-open="modal1">About</a>
       <div class="reveal" id="modal1" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
         <h2 id="modalTitle">Welcome to CitySearch!</h2>
@@ -46,7 +51,7 @@
   </div>
 
   <div class="container" id="mainArea">
-    <div class="input-group input-group-rounded" id="searchBar">
+    <div class="input-group input-group-rounded animated bounceInDown" id="searchBar">
       <input class="input-group-field" type="search" id="searchRes">
       <div class="input-group-button">
         <input type="submit" class="button secondary" id="searchBtn" value="Search">
