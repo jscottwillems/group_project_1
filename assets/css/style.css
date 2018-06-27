@@ -126,10 +126,14 @@ body.is-reveal-open {
 }
 
 .summaryDiv {
-  text-align: center;
+  text-align: left;
   font-size: 18px;
   margin-left: auto;
+  margin-bottom: 20px;
+  padding: 20px;
   margin-right: auto;
+  border-radius: 10px;
+  background: rgba(240, 248, 255, 0.671);
 }
 
 .eventsHeader {
