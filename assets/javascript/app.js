@@ -63,13 +63,11 @@ $(document).ready(function () {
         // sets up AJAX for weather API
         var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + place + "') and u='f'"
 
-        //change city variable dynamically as required
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql?q=" + searchtext + "&format=json",
             method: "GET"
         }).then(function (data) {
             // console.log(data);
-
             var temp = data.query.results.channel.item.condition.temp + "°F";
             console.log(temp)
             var weatherDescription = data.query.results.channel.item.condition.text;
@@ -93,10 +91,10 @@ $(document).ready(function () {
 
             // holds all results on DOM
             var resultsDiv = $('<div>');
-            resultsDiv.addClass('resultsDiv');
+            resultsDiv.addClass('resultsDiv animated fadeIn');
             // creates back to search button
             var backToSearch = $('<button type="button">Back To Search</button>');
-            $(backToSearch).addClass('backToSearch');
+            $(backToSearch).addClass('backToSearch animated fadeIn');
 
             // prevents results from not displaying if invalid search item is entered
             if (response.candidates[0] != undefined) {
@@ -120,22 +118,22 @@ $(document).ready(function () {
                         var cityName = response.result.name;
 
                         var cityNameDiv = $('<h1>' + cityName + '</h1>');
-                        cityNameDiv.addClass('cityNameDiv');
+                        cityNameDiv.addClass('cityNameDiv animated fadeIn');
 
                         var imgDiv = $('<img src="' + photoRef + '">');
-                        imgDiv.addClass('cityImg');
+                        imgDiv.addClass('cityImg animated fadeIn');
                         
                         var weatherDiv = $('<div>');
-                        $(weatherDiv).addClass('weatherDiv');
+                        $(weatherDiv).addClass('weatherDiv animated fadeIn');
                         
                         var eventsHeader = $('<p>Events</p>');
-                        $(eventsHeader).addClass('eventsHeader');
+                        $(eventsHeader).addClass('eventsHeader animated fadeIn');
 
                         var eventsDiv = $('<div>');
-                        $(eventsDiv).addClass('eventsDiv');
+                        $(eventsDiv).addClass('eventsDiv animated fadeIn');
 
                         var noEvents = $('<p>No events found.</p>');
-                        $(noEvents).addClass('noEvents');
+                        $(noEvents).addClass('noEvents animated fadeIn');
                         $(eventsDiv).append(noEvents);
                         $(noEvents).hide();
 
@@ -160,7 +158,7 @@ $(document).ready(function () {
             } else {
 
                 var noResults = $('<p>No results found. Try another search.</p>');
-                $(noResults).addClass('noResults');
+                $(noResults).addClass('noResults animated fadeIn');
                 $(resultsDiv).append(noResults);
                 $(resultsDiv).append(backToSearch);
                 $('#mainArea').append(resultsDiv);
