@@ -60,7 +60,7 @@ $(document).ready(function () {
         // clears content from mainArea container
         $('#mainArea').empty();
 
-        var lowerPlace = place.toLowerCase();
+        var lowerPlace = place.replace(/\s+/g, '-').toLowerCase();
 
         // ajax for teleport
         $.ajax({
