@@ -1,5 +1,3 @@
-
-var teleApp = {};
 $(document).ready(function () {
 
     $('.loader').hide();
@@ -9,49 +7,7 @@ $(document).ready(function () {
         $(".loader").fadeIn();
 
     });
-    //retrieve user selected API city name details via API geoname ID
-    teleApp.getCityNameViaID = function(id) {
-        
-        $.ajax({
-            url: `https://api.teleport.org/api/cities/geonameid:${id}/`,
-            method: 'GET',
-            dataType: 'json'
-        }).then(function(cityNameData) {
-            teleApp.fullName = cityNameData.full_name;
-            teleApp.cityName = cityNameData.name;
-   
-            // activate summary section
-            $('#mainArea').append('<div id="map">');
-            
-            // append map to DOM
-            teleApp.displaySummarySection(teleApp.fullName, teleApp.cityName);
-            
-            setTimeout(function() {
-                teleApp.initMap(teleApp.latitude, teleApp.longitude);
-            }, 500);	
 
-            // compiles summary section and sends to DOM
-         teleApp.displaySummarySection = function(fullName, cityName) {
-    // change header to city name
-   var header = $('#mainArea').append('<h1>');
-	$(header).text(cityName);
- 
-    // create summary header
-    var summary= $('#mainArea').append('<h2>');
-	var summaryContainerHeader = $(summary).text(fullName);
-
-	// append header to summary section in DOM 
-	$('#mainArea').append(summaryContainerHeader);
-}
-   //-------------------------------------------------------
-
-
-
-
-
-
-   
-   
     $(document).ajaxComplete(function () {
 
         $(".loader").fadeOut('slow');
@@ -103,6 +59,23 @@ $(document).ready(function () {
 
         // clears content from mainArea container
         $('#mainArea').empty();
+
+        var lowerPlace = place.toLowerCase();
+
+        // ajax for teleport
+        $.ajax({
+            url: 'https://api.teleport.org/api/urban_areas/slug:'+ lowerPlace +'/scores/',
+            method: 'GET'
+        }).then(function(response) {
+            console.log(response)
+            
+            var summary = response.summary;
+            
+            console.log(summary);
+        
+            $('.summaryDiv').append(summary);
+
+        }); // closes teleport AJAX
 
 
         // sets up AJAX for weather API
@@ -170,6 +143,9 @@ $(document).ready(function () {
                         
                         var weatherDiv = $('<div>');
                         $(weatherDiv).addClass('weatherDiv animated fadeIn');
+
+                        var summaryDiv = $('<div>');
+                        $(summaryDiv).addClass('summaryDiv');
                         
                         var eventsHeader = $('<p>Events</p>');
                         $(eventsHeader).addClass('eventsHeader animated fadeIn');
@@ -187,6 +163,8 @@ $(document).ready(function () {
                         $(resultsDiv).append(cityNameDiv);
 
                         $(resultsDiv).append(weatherDiv);
+
+                        $(resultsDiv).append(summaryDiv);
 
                         $(resultsDiv).append(eventsHeader)
 

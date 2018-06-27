@@ -88,7 +88,6 @@ body.is-reveal-open {
   padding-right: 30px;
   height: auto;
   min-height: 550px;
-  /*background: rgba(240, 248, 255, 0.452);*/
   border-radius: 10px;
 }
 
@@ -124,6 +123,13 @@ body.is-reveal-open {
   text-align: center;
   font-size: 18px;
   margin-bottom: 40px;
+}
+
+.summaryDiv {
+  text-align: center;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .eventsHeader {
@@ -217,13 +223,15 @@ body.is-reveal-open {
   height: 150px;
   margin-bottom: 0;
   width: 100vw;
-  padding: 1rem;
+  padding-top: 30px;
   background: rgba(0, 0, 61, 0.750);
   color: aliceblue;
 }
 
 #copyright {
-  font-size: 16px;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @font-face {
