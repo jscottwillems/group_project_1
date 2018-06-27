@@ -1,5 +1,4 @@
-$(document).ready(function () {    
-    $("#orbit").hide()
+$(document).ready(function () {
 
     $('.loader').hide();
 
@@ -23,13 +22,11 @@ $(document).ready(function () {
 
     // reloads page when you click the logo
     $('#logo').on('click', function (event) {
-        $("#orbit").hide()
         event.preventDefault();
         location.reload();
     });
     // resets search form
     $(document).on('click', '.backToSearch', function () {
-        $("#orbit").hide()
         event.preventDefault();
         location.reload();
     });
@@ -54,7 +51,6 @@ $(document).ready(function () {
     // function for search
     $('#searchBtn').on('click', function (event) {
         event.preventDefault();
-        $("#orbit").show()
 
         // gets city name from search bar
         var place = $('#searchRes').val();
@@ -67,13 +63,11 @@ $(document).ready(function () {
         // sets up AJAX for weather API
         var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + place + "') and u='f'"
 
-        //change city variable dynamically as required
         $.ajax({
             url: "https://query.yahooapis.com/v1/public/yql?q=" + searchtext + "&format=json",
             method: "GET"
         }).then(function (data) {
             // console.log(data);
-
             var temp = data.query.results.channel.item.condition.temp + "°F";
             console.log(temp)
             var weatherDescription = data.query.results.channel.item.condition.text;
@@ -84,6 +78,28 @@ $(document).ready(function () {
             $('.weatherDiv').append(weather);
 
         }); // closes weather ajax call
+
+            //teleport
+            var teleApp = {};
+
+            teleApp.getCityNameViaID = function(place) {
+	
+            $.ajax({
+                url: `https://api.teleport.org/api/cities/geonameid:${place}/`,
+                method: 'GET',
+                dataType: 'json'
+            }).then(function(cityNameData) {
+                teleApp.fullName = cityNameData.full_name;
+                teleApp.cityName = cityNameData.name;
+                teleApp.latitude = cityNameData.location.latlon.latitude;
+                teleApp.longitude = cityNameData.location.latlon.longitude;
+        
+                console.log(cityNameData)
+                // activate summary section
+                $('.summaryWithMap').append('<div id="map">');
+                
+                // append map to DOM
+                teleApp.displaySummarySection(teleApp.fullName, teleApp.cityName);
 
         // sets up google maps API
         var queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + place + "&inputtype=textquery&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
@@ -97,10 +113,10 @@ $(document).ready(function () {
 
             // holds all results on DOM
             var resultsDiv = $('<div>');
-            resultsDiv.addClass('resultsDiv');
+            resultsDiv.addClass('resultsDiv animated fadeIn');
             // creates back to search button
             var backToSearch = $('<button type="button">Back To Search</button>');
-            $(backToSearch).addClass('backToSearch');
+            $(backToSearch).addClass('backToSearch animated fadeIn');
 
             // prevents results from not displaying if invalid search item is entered
             if (response.candidates[0] != undefined) {
@@ -108,50 +124,46 @@ $(document).ready(function () {
                 var placeId = response.candidates[0].place_id
                 console.log(placeId);
 
-                   
-                }
-                    //console.log(photos);
-                    var resultsDiv = $('<div>');
-                    resultsDiv.addClass('resultsDiv');
+                var newURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo";
 
-                var photos = [];
+
                 // gets photo reference and city info using new URL with placeID
                 $.ajax({
                     url: newURL,
                     method: "GET"
                 }).then(function (response) {
 
-                    for (i = 0; i < 4; i++) {
+                    for (i = 0; i < 1; i++) {
 
                         var photoRef = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + response.result.photos[i].photo_reference + "&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
 
-                    $(resultsDiv).append(eventsDiv);
+                        var cityName = response.result.name;
 
-                    $(resultsDiv).append(backToSearch);
-                    var imgDiv = $("#orbit");
-                    imgDiv.addClass('cityImg');
-                    $("#image-" + i).attr("src", photos[i]);
+                        var cityNameDiv = $('<h1>' + cityName + '</h1>');
+                        cityNameDiv.addClass('cityNameDiv animated fadeIn');
 
-                      
+                        var imgDiv = $('<img src="' + photoRef + '">');
+                        imgDiv.addClass('cityImg animated fadeIn');
                         
                         var weatherDiv = $('<div>');
-                        $(weatherDiv).addClass('weatherDiv');
+                        $(weatherDiv).addClass('weatherDiv animated fadeIn');
                         
                         var eventsHeader = $('<p>Events</p>');
-                        $(eventsHeader).addClass('eventsHeader');
+                        $(eventsHeader).addClass('eventsHeader animated fadeIn');
 
                         var eventsDiv = $('<div>');
-                        $(eventsDiv).addClass('eventsDiv');
+                        $(eventsDiv).addClass('eventsDiv animated fadeIn');
 
                         var noEvents = $('<p>No events found.</p>');
-                        $(noEvents).addClass('noEvents');
+                        $(noEvents).addClass('noEvents animated fadeIn');
                         $(eventsDiv).append(noEvents);
                         $(noEvents).hide();
 
                         $(resultsDiv).append(imgDiv);
 
+                        $(resultsDiv).append(cityNameDiv);
 
-             // closes second ajax call
+                        $(resultsDiv).append(weatherDiv);
 
                         $(resultsDiv).append(eventsHeader)
 
@@ -165,15 +177,15 @@ $(document).ready(function () {
 
                 }); // closes second google maps ajax call
 
-              {
+            } else {
 
                 var noResults = $('<p>No results found. Try another search.</p>');
-                $(noResults).addClass('noResults');
+                $(noResults).addClass('noResults animated fadeIn');
                 $(resultsDiv).append(noResults);
                 $(resultsDiv).append(backToSearch);
                 $('#mainArea').append(resultsDiv);
             }
-        
+
         }); // closes first google ajax call
 
         //eventful api call
@@ -241,32 +253,11 @@ $(document).ready(function () {
 
                 }; // closes eventful if else statement to prevent results from not displaying if no events are found for city
 
-        
-        var searchtext = "select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + place + "') and u='f'"
-        //change city variable dynamically as required
-        $.ajax({
-          url: "https://query.yahooapis.com/v1/public/yql?q=" + searchtext + "&format=json",
-          method: "GET"
-          }).then(function(data){
-         //console.log(data);
-         var date = data.query.results.channel.item.condition.date;
-         //console.log(date);
-;
-         var temp = data.query.results.channel.item.condition.temp + "°F";
-         //console.log(temp)
-
-         var weatherDescription = data.query.results.channel.item.condition.text;
-         //console.log(weatherDescription);
-
-         var weather = $("<p>");
-         $(weather).addClass("weather");
-         var description = $(weather).text(date + " " + "It is currently " + temp + " and " + weatherDescription);
-         $(".citynamediv").append(description);
             } // closes eventful for loop
 
-        ); // closes eventful API ajax call
+        }); // closes eventful API ajax call
 
-
-
-
-        };})})})
+    }); // closes search button function
+        };//closes telport
+    },)
+}); //closes document.ready
