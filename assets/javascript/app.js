@@ -97,6 +97,28 @@ $(document).ready(function () {
 
         }); // closes weather ajax call
 
+            //teleport
+            var teleApp = {};
+
+            teleApp.getCityNameViaID = function(place) {
+	
+            $.ajax({
+                url: `https://api.teleport.org/api/cities/geonameid:${place}/`,
+                method: 'GET',
+                dataType: 'json'
+            }).then(function(cityNameData) {
+                teleApp.fullName = cityNameData.full_name;
+                teleApp.cityName = cityNameData.name;
+                teleApp.latitude = cityNameData.location.latlon.latitude;
+                teleApp.longitude = cityNameData.location.latlon.longitude;
+        
+                console.log(cityNameData)
+                // activate summary section
+                $('.summaryWithMap').append('<div id="map">');
+                
+                // append map to DOM
+                teleApp.displaySummarySection(teleApp.fullName, teleApp.cityName);
+
         // sets up google maps API
         var queryURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + place + "&inputtype=textquery&key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo"
 
@@ -259,5 +281,6 @@ $(document).ready(function () {
         }); // closes eventful API ajax call
 
     }); // closes search button function
-
+        };//closes telport
+    },)
 }); //closes document.ready

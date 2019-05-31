@@ -4,45 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CitySearch</title>
-
-  <link rel="shortcut icon" type="img/png" href="assets/images/favicon.png">
+  <title>City Search</title>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVlepkh__TW03V4Vx1kOnXrdgQ61CIwZo&libraries=places"></script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha384-OHBBOqpYHNsIqQy8hL1U+8OXf9hH6QRxi0+EODezv82DfnZoV7qoHAZDwMwEJvSw"
-    crossorigin="anonymous">
 
   <link rel="stylesheet" href="assets/css/foundation.css">
 
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
 </head>
 
 <body>
 
-  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-  <div class="loader"></div>
-
   <div class="top-bar">
-    <h2 class="animated bounceInDown" id="logo">CitySearch</h2>
-    <p class="animated rotateInUpRight" id="tagLine">Know before you go...</p>
-    <div class="top-bar-right animated bounceInDown" id="aboutBtnContainer">
+    <h2 id="logo">CitySearch</h2>
+    <p id="tagLine">Know before you go</p>
+    <div class="top-bar-right" id="aboutBtnContainer">
       <a href="#" id="aboutBtn" data-open="modal1">About</a>
       <div class="reveal" id="modal1" data-reveal data-animation-in="fade-in" data-animation-out="fade-out">
         <h2 id="modalTitle">Welcome to CitySearch!</h2>
         <p class="lead">Looking for something to do?</p>
         <p>CitySearch allows users to search for a city of their choice and receive relevant information about that city. The
           search results include photos, a brief description of the city, and upcoming events in that city. CitySearch is
-          ideal for users who want to compare travel destinations or just find something fun to do in their local area. Try
-          searching a city now to explore!</p>
-        <p>Tip: For results specific to a certain place try searching a popular venue name or event center.</p>
+          ideal for users who want to compare travel destinations or just find something fun to do in their local area.</p>
         <button class="close-button" data-close aria-label="Close modal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -51,14 +41,14 @@
   </div>
 
   <div class="container" id="mainArea">
-    <div class="input-group input-group-rounded animated bounceInDown" id="searchBar">
+    <div class="input-group input-group-rounded" id="searchBar">
       <input class="input-group-field" type="search" id="searchRes">
       <div class="input-group-button">
         <input type="submit" class="button secondary" id="searchBtn" value="Search">
       </div>
     </div>
   </div>
-
+  
 
 
   <div class="columns shrink footer text-center" id="footer">
