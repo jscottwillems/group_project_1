@@ -2,6 +2,18 @@ body {
   background: url('../images/background.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'bluefish';
+  height: 100vh;
+  padding-bottom: 150px;
+  overflow-x: hidden;
+}
+
+body.is-reveal-open {
+  overflow: visible;
+}
+
+.reveal-overlay {
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .top-bar {
@@ -9,6 +21,7 @@ body {
   background: rgba(0, 0, 61, 0.750);
   color: white;
   max-height: 190px;
+  width: 100vw;
 }
 
 #logo {
@@ -16,6 +29,11 @@ body {
   float: left;
   font-size: 62px;
   text-shadow: 4px 4px rgb(0, 0, 0);
+}
+
+#logo:hover,
+.backToSearch:hover {
+  cursor: pointer;
 }
 
 #tagLine {
@@ -42,6 +60,16 @@ body {
   color: rgb(129, 188, 236);
 }
 
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('../images/loading.gif') 50% 50% no-repeat rgba(10, 10, 10, 0.411);
+}
+
 .input-group-rounded .input-group-field {
   border-radius: 5000px 0 0 5000px;
   padding-left: 1rem;
@@ -54,15 +82,132 @@ body {
 
 #mainArea {
   margin: 80px 80px 80px 80px;
-  padding-top: 245px; 
+  padding-top: 245px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
   height: auto;
   min-height: 550px;
-  background: rgba(240, 248, 255, 0.452);
   border-radius: 10px;
 }
 
+.resultsDiv {
+  height: auto;
+  padding: 30px 30px 30px 30px;
+  margin-top: -200px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(240, 248, 255, 0.788);
+  border-radius: 10px;
+}
+
+.noResults {
+  text-align: center;
+  font-size: 24px;
+}
+
 .cityImg {
- margin-left: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 2px 2px 2px 2px rgba(29, 29, 29, 0.459);
+}
+
+.cityNameDiv {
+  text-align: center;
+  font-family: 'bluefish';
+  margin-bottom: 10px;
+}
+
+.weatherDiv {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.summaryDiv {
+  text-align: left;
+  font-size: 18px;
+  margin-left: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  margin-right: auto;
+  border-radius: 10px;
+  background: rgba(240, 248, 255, 0.671);
+}
+
+.eventsHeader {
+  font-size: 24px;
+  margin-left: 30px;
+}
+
+.eventsDiv {
+  display: block;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border-style: groove;
+  border-color: rgba(25, 25, 66, 0.288);
+  border-width: 4px;
+  overflow: auto;
+  background: rgba(240, 248, 255, 0.671);
+}
+
+.eventItem {
+  padding: 20px;
+  margin-bottom: 15px;
+  height: auto;
+  background: rgba(165, 220, 247, 0.281);
+}
+
+.eventItemName {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.eventItemImage {
+
+}
+
+.eventItemBio {
+  font-size: 16px;
+  text-align: left;
+}
+
+.eventItemUrl {
+  color: blue;
+}
+
+.eventItemDate {
+  text-align: right;
+  margin-right: 40px;
+  margin-top: -25px;
+  font-weight: bold;
+}
+
+.eventItemUrl:hover {
+  color: rgb(24, 24, 122);
+}
+
+.backToSearch {
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  color: aliceblue;
+  background: rgb(0, 0, 61);
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.noEvents {
+  text-align: center;
+  margin-top: 150px;
+  font-size: 18px;
 }
 
 #searchBar {
@@ -77,16 +222,20 @@ body {
   font-size: 26px;
 }
 
-
 #footer {
-  height: 100px;
+  position: absolute;
+  height: 150px;
+  margin-bottom: 0;
+  width: 100vw;
   padding-top: 30px;
   background: rgba(0, 0, 61, 0.750);
   color: aliceblue;
 }
 
 #copyright {
-  font-size: 22px;
+  font-size: 18px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @font-face {
@@ -96,5 +245,5 @@ body {
 
 @font-face {
   font-family: 'bluefish';
-  src: url(bluefish.otf) format('opentype');
+  src: url(bluefish.ttf) format('truetype');
 }
